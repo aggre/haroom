@@ -1,52 +1,29 @@
 @charset "UTF-8";
 
-@font-face {
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 100;
-	src: local("Roboto Thin"), local("Roboto-Thin"), url(http://themes.googleusercontent.com/static/fonts/roboto/v7/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff) format("woff");
-}
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,700);
 
-@font-face {
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-	src: local("Roboto Regular"), local("Roboto-Regular"), url(http://themes.googleusercontent.com/static/fonts/roboto/v7/2UX7WLTfW3W8TclTUvlFyQ.woff) format("woff");
-}
-
-@font-face {
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 700;
-	src: local("Roboto Bold"), local("Roboto-Bold"), url(http://themes.googleusercontent.com/static/fonts/roboto/v7/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff) format("woff");
+$setPrefix: '' , -moz- , -webkit-;
+@mixin PropertySetPrefix($name, $value) {
+	@each $prefix in $setPrefix {
+		#{$prefix}#{$name}: $value;
+	}
 }
 
 * {
+	$transProperty: color,background-color,border,opacity;
+	@include PropertySetPrefix(transition-property, $transProperty);
+	@include PropertySetPrefix(transition-duration, 0.3s);
+	@include PropertySetPrefix(transition-timing-function, ease);
 	-webkit-text-size-adjust: none;
-	transition-property: color,background-color,background-image,border,text-shadow,box-shadow,opacity,top,margin-top;
-	transition-duration: 0.3s;
-	transition-timing-function: ease;
-	-webkit-transition-property: color,background-color,background-image,border,text-shadow,box-shadow,opacity,top,margin-top;
-	-webkit-transition-duration: 0.3s;
-	-webkit-transition-timing-function: ease;
-	-moz-transition-property: color,background-color,background-image,border,text-shadow,box-shadow,opacity,top,margin-top;
-	-moz-transition-duration: 0.3s;
-	-moz-transition-timing-function: ease;
 }
 
 a {
 	position: relative;
 	color: #00af4d;
 	text-decoration: none;
-	transition-property: top;
-	transition-duration: 0.1s;
-	transition-timing-function: ease;
-	-webkit-transition-property: top;
-	-webkit-transition-duration: 0.1s;
-	-webkit-transition-timing-function: ease;
-	-moz-transition-property: top;
-	-moz-transition-duration: 0.1s;
-	-moz-transition-timing-function: ease;
+	@include PropertySetPrefix(transition-property, top);
+	@include PropertySetPrefix(transition-duration, 0.1s);
+	@include PropertySetPrefix(transition-timing-function, ease);
 	&:hover {
 		color: #00afaf;
 	}
@@ -113,9 +90,7 @@ header[role=banner] {
 					bottom: -5px;
 					left: 2em;
 					background-color: #d0edff;
-					-webkit-transform: rotate(45deg);
-					-moz-transform: rotate(45deg);
-					transform: rotate(45deg);
+					@include PropertySetPrefix(transform, rotate(45deg));
 				}
 			}
 			p {
@@ -139,12 +114,12 @@ header[role=banner] {
 				padding: 1em;
 				font-family: serif;
 				line-height: 1.5em;
-			}
-			blockquote::before {
-				content: '“';
-			}
-			blockquote::after {
-				content: '”';
+				&::before {
+					content: '“';
+				}
+				&::after {
+					content: '”';
+				}
 			}
 			footer {
 				padding: 1em;
