@@ -102,6 +102,7 @@ header[role=banner] {
 			img {
 				display: block;
 				max-width: 100%;
+				width: 100%;
 			}
 			iframe {
 				display: block;
@@ -133,4 +134,10 @@ header[role=banner] {
 			}
 		}
 	}
+}
+
+nav {
+	margin: 0 auto;
+	padding: 5em;
+	text-align: center;
 }
